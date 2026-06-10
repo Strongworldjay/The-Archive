@@ -283,3 +283,67 @@ input{flex:1}
   .scroll-card-action.release{position:relative;top:4px}
   .modal-backdrop{padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
 }
+
+
+/* Finder spell previews and polished verbal-component display */
+.verbal-component-display{
+  display:block;width:100%;padding:0;color:var(--page-ink);font:inherit;
+  line-height:inherit;text-align:left;white-space:pre-wrap;background:transparent;
+  border:0;border-radius:0;cursor:text
+}
+.scroll-card-preview-trigger{
+  width:auto;padding:0;background:transparent;border:0;border-radius:0;
+  cursor:zoom-in;-webkit-touch-callout:none;touch-action:manipulation
+}
+.scroll-card-preview-trigger:focus-visible{
+  outline:2px solid var(--page-gold);outline-offset:3px
+}
+.spell-preview-backdrop{
+  position:fixed;z-index:70;inset:0;display:grid;padding:18px;
+  background:rgba(8,12,24,.72);backdrop-filter:blur(8px);place-items:center
+}
+.spell-preview-modal{
+  width:min(880px,100%);max-height:min(88vh,820px);padding:20px;
+  overflow:auto;color:var(--page-ink);background-color:var(--paper-page);
+  background-image:linear-gradient(var(--paper-overlay),var(--paper-overlay)),var(--left-page-texture);
+  background-position:center;background-size:auto,cover;border:1px solid rgba(73,53,28,.32);
+  border-radius:18px;box-shadow:0 24px 64px rgba(0,0,0,.46);
+  scrollbar-width:none
+}
+.spell-preview-modal::-webkit-scrollbar{display:none;width:0;height:0}
+.spell-preview-header{display:flex;align-items:start;justify-content:space-between;gap:16px}
+.spell-preview-header h2{margin-bottom:0;color:var(--page-ink);font-size:clamp(1.55rem,3vw,2.35rem)}
+.spell-preview-layout{display:grid;grid-template-columns:minmax(190px,34%) 1fr;gap:20px;margin-top:10px}
+.spell-preview-art{display:grid;align-self:start;min-height:220px;padding:10px;place-items:center}
+.spell-preview-art img{display:block;width:100%;max-height:310px;object-fit:contain}
+.spell-preview-copy{min-width:0}
+.spell-preview-copy .spell-facts{gap:5px}
+.spell-preview-copy .spell-facts div{grid-template-columns:104px 1fr;gap:7px}
+.spell-preview-copy dt,.spell-preview-copy dd{font-size:.84rem;line-height:1.28}
+.spell-preview-copy .body-copy{font-size:.88rem;line-height:1.45}
+.spell-preview-copy .rich-text{gap:9px}
+.spell-preview-copy .tag-row{margin-top:12px}
+.spell-preview-actions{display:flex;flex-wrap:wrap;justify-content:end;gap:8px;margin-top:16px}
+.spell-preview-close{color:var(--page-ink);background:rgba(255,255,255,.16);border-color:rgba(73,53,28,.3)}
+@media(prefers-color-scheme:dark){
+  .spell-preview-art img{
+    filter:sepia(.42) saturate(.88) hue-rotate(348deg) brightness(.94) contrast(1.04)
+  }
+}
+@media(max-width:760px){
+  .finder .scroll-card-title-long{font-size:calc(.92rem - 1px)}
+  .spell-preview-backdrop{
+    padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right))
+      max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))
+  }
+  .spell-preview-modal{max-height:calc(100dvh - 16px);padding:14px;border-radius:14px}
+  .spell-preview-header h2{font-size:1.65rem}
+  .spell-preview-layout{display:block;margin-top:4px}
+  .spell-preview-art{min-height:0;padding:0 10px 8px}
+  .spell-preview-art img{max-height:190px}
+  .spell-preview-copy .spell-facts div{grid-template-columns:92px 1fr}
+  .spell-preview-copy dt,.spell-preview-copy dd{font-size:.78rem}
+  .spell-preview-copy .body-copy{font-size:.82rem;line-height:1.38}
+  .spell-preview-actions{position:sticky;bottom:-14px;margin:14px -14px -14px;padding:10px 14px;
+    background:color-mix(in srgb,var(--paper-page) 90%,transparent);backdrop-filter:blur(7px)}
+}

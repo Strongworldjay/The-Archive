@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { ALL_SPELLS } from './data/spells.js'
 import { getSpellImage, levelLabel, schoolFallbackUrl } from './data/spellUtils.js'
 
@@ -370,18 +370,40 @@ function SpellImage({ spell, className = '' }) {
 }
 
 function VerbalComponentEditor({ value, onChange }) {
+  const [editing, setEditing] = useState(!value)
+
+  useEffect(() => {
+    if (!value) setEditing(true)
+  }, [value])
+
   return (
     <div className="verbal-component-row">
       <dt>Verbal Words</dt>
       <dd>
-        <textarea
-          className="verbal-component-input"
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-          rows={2}
-          placeholder="Write the incantation you want to use…"
-          aria-label="Your custom verbal component"
-        />
+        {editing ? (
+          <textarea
+            className="verbal-component-input"
+            value={value}
+            onChange={(event) => onChange(event.target.value)}
+            onBlur={() => {
+              if (value.trim()) setEditing(false)
+            }}
+            rows={2}
+            placeholder="Write the incantation you want to use…"
+            aria-label="Your custom verbal component"
+            autoFocus={!!value}
+          />
+        ) : (
+          <button
+            className="verbal-component-display"
+            type="button"
+            onClick={() => setEditing(true)}
+            aria-label="Edit your custom verbal component"
+            title="Click to edit verbal words"
+          >
+            {value}
+          </button>
+        )}
       </dd>
     </div>
   )
@@ -571,6 +593,7 @@ function SpellFinder({ savedIds, onToggle, onClose }) {
   const [castingTime, setCastingTime] = useState('all')
   const [sort, setSort] = useState('level')
   const [page, setPage] = useState(1)
+  const [previewSpell, setPreviewSpell] = useState(null)
 
   const schools = uniq(ALL_SPELLS.map((spell) => spell.school))
   const classes = uniq(ALL_SPELLS.flatMap((spell) => spell.classes || []))
@@ -680,6 +703,7 @@ function SpellFinder({ savedIds, onToggle, onClose }) {
                 actionKind={saved ? 'release' : 'bind'}
                 actionLabel={saved ? 'Release from Tome' : 'Bind to Tome'}
                 onAction={() => onToggle(spell)}
+                onPreview={() => setPreviewSpell(spell)}
               />
             )
           })}
@@ -692,21 +716,43 @@ function SpellFinder({ savedIds, onToggle, onClose }) {
         {filtered.length > FINDER_PAGE_SIZE && (
           <Pagination page={currentPage} pageCount={pageCount} onPage={setPage} />
         )}
+
+        {previewSpell && (
+          <SpellPreviewModal
+            spell={previewSpell}
+            saved={savedIds.includes(spellId(previewSpell))}
+            onToggle={() => onToggle(previewSpell)}
+            onClose={() => setPreviewSpell(null)}
+          />
+        )}
       </section>
     </div>
   )
 }
 
-function ScrollSpellCard({ spell, saved, actionKind = 'bind', actionLabel, onAction }) {
+function ScrollSpellCard({
+  spell,
+  saved,
+  actionKind = 'bind',
+  actionLabel,
+  onAction,
+  onPreview,
+}) {
   return (
     <article className={`scroll-card ${saved ? 'saved' : ''}`}>
-      <div className="scroll-card-image">
-        <SpellImage spell={spell} />
-      </div>
+      {onPreview ? (
+        <SpellPreviewTrigger spell={spell} onPreview={onPreview} />
+      ) : (
+        <div className="scroll-card-image">
+          <SpellImage spell={spell} />
+        </div>
+      )}
 
       <div className="scroll-card-copy">
         <p className="eyebrow">{levelLabel(spell.spellLevel)}</p>
-        <h3>{spell.name}</h3>
+        <h3 className={spell.name.length > 17 ? 'scroll-card-title-long' : ''}>
+          {spell.name}
+        </h3>
         <p className="scroll-card-school">{spell.school}</p>
       </div>
 
@@ -720,6 +766,138 @@ function ScrollSpellCard({ spell, saved, actionKind = 'bind', actionLabel, onAct
         {actionLabel}
       </button>
     </article>
+  )
+}
+
+function SpellPreviewTrigger({ spell, onPreview }) {
+  const holdTimer = useRef(null)
+  const ignoreNextClick = useRef(false)
+
+  const clearHold = () => {
+    if (!holdTimer.current) return
+    window.clearTimeout(holdTimer.current)
+    holdTimer.current = null
+  }
+
+  return (
+    <button
+      className="scroll-card-image scroll-card-preview-trigger"
+      type="button"
+      onClick={() => {
+        if (ignoreNextClick.current) {
+          ignoreNextClick.current = false
+          return
+        }
+
+        onPreview()
+      }}
+      onPointerDown={(event) => {
+        if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return
+
+        clearHold()
+        holdTimer.current = window.setTimeout(() => {
+          ignoreNextClick.current = true
+          onPreview()
+          holdTimer.current = null
+        }, 420)
+      }}
+      onPointerUp={clearHold}
+      onPointerCancel={clearHold}
+      onPointerLeave={clearHold}
+      onContextMenu={(event) => event.preventDefault()}
+      aria-label={`Preview ${spell.name}`}
+      title={`Preview ${spell.name}`}
+    >
+      <SpellImage spell={spell} />
+    </button>
+  )
+}
+
+function SpellPreviewModal({ spell, saved, onToggle, onClose }) {
+  const components = [
+    spell.components?.verbal && 'V',
+    spell.components?.somatic && 'S',
+    spell.components?.material &&
+      `M${spell.components.materialText ? ` (${spell.components.materialText})` : ''}`,
+  ]
+    .filter(Boolean)
+    .join(', ') || '—'
+
+  return (
+    <div className="spell-preview-backdrop" role="presentation" onMouseDown={onClose}>
+      <article
+        className="spell-preview-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${spell.name} preview`}
+        onMouseDown={(event) => event.stopPropagation()}
+      >
+        <header className="spell-preview-header">
+          <div>
+            <p className="eyebrow">
+              {levelLabel(spell.spellLevel)} {spell.school}
+            </p>
+            <h2>{spell.name}</h2>
+          </div>
+
+          <button className="close" onClick={onClose} aria-label="Close spell preview">
+            ×
+          </button>
+        </header>
+
+        <div className="spell-preview-layout">
+          <div className="spell-preview-art">
+            <SpellImage spell={spell} />
+          </div>
+
+          <div className="spell-preview-copy">
+            <dl className="spell-facts">
+              <Fact label="Casting Time" value={spell.castingTime} />
+              <Fact label="Range" value={spell.range} />
+              {spell.area && <Fact label="Area" value={spell.area} />}
+              <Fact label="Components" value={components} />
+              <Fact
+                label="Duration"
+                value={`${spell.concentration ? 'Concentration, ' : ''}${spell.duration}`}
+              />
+              {spell.classes?.length > 0 && (
+                <Fact label="Classes" value={spell.classes.join(', ')} />
+              )}
+            </dl>
+
+            <div className="rule thin" />
+            <RichText text={spell.descriptionMd} />
+
+            {spell.statblockHtml && <StatBlock html={spell.statblockHtml} />}
+
+            {spell.scalingMd && (
+              <div className="scaling">
+                <RichText text={spell.scalingMd} />
+              </div>
+            )}
+
+            <div className="tag-row">
+              {[...(spell.tags || []), ...(spell.damageTypes || [])].map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <footer className="spell-preview-actions">
+          <button
+            className={`button primary ${saved ? 'saved-button' : ''}`}
+            onClick={onToggle}
+          >
+            {saved ? 'Release from Tome' : 'Bind to Tome'}
+          </button>
+
+          <button className="button spell-preview-close" onClick={onClose}>
+            Close Preview
+          </button>
+        </footer>
+      </article>
+    </div>
   )
 }
 
