@@ -662,6 +662,12 @@ function SpellFinder({ savedIds, onToggle, onClose }) {
           {filtered.length} spell{filtered.length === 1 ? '' : 's'} · Page {currentPage} of {pageCount}
         </p>
 
+        {filtered.length > FINDER_PAGE_SIZE && (
+          <div className="finder-pagination-top">
+            <Pagination page={currentPage} pageCount={pageCount} onPage={setPage} />
+          </div>
+        )}
+
         <div className="finder-results">
           {shown.map((spell) => {
             const saved = savedIds.includes(spellId(spell))
