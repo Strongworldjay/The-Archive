@@ -353,9 +353,9 @@ input{flex:1}
   }
 }
 
-/* Scroll card title moved into the top rolled section */
+/* Scroll card title moved higher into the top rolled section */
 .scroll-card{
-  padding-top:24px;
+  padding-top:16px;
 }
 
 .scroll-card-title-wrap{
@@ -364,8 +364,8 @@ input{flex:1}
   display:flex;
   align-items:center;
   justify-content:center;
-  min-height:52px;
-  margin:2px 0 6px;
+  min-height:46px;
+  margin:-6px 0 2px;
   padding:0 18px;
   text-align:center;
 }
@@ -374,25 +374,34 @@ input{flex:1}
   margin:0;
   color:var(--page-ink);
   font-size:1.02rem;
-  line-height:1.05;
+  line-height:1.02;
 }
 
 .scroll-card-image{
-  margin:2px -4px -5px;
+  margin:-8px -4px -5px;
 }
 
 .scroll-card-copy{
-  padding-top:2px;
+  margin:-2px 0 5px;
+  padding-top:0;
+}
+
+.scroll-card .eyebrow{
+  margin-bottom:3px;
+}
+
+.scroll-card-school{
+  margin-top:3px;
 }
 
 @media(max-width:760px){
   .scroll-card{
-    padding-top:22px;
+    padding-top:14px;
   }
 
   .scroll-card-title-wrap{
-    min-height:42px;
-    margin:0 0 4px;
+    min-height:38px;
+    margin:-5px 0 2px;
     padding:0 12px;
   }
 
@@ -405,6 +414,11 @@ input{flex:1}
   }
 
   .scroll-card-image{
-    margin:2px -2px -4px;
+    margin:-4px -2px -4px;
+  }
+
+  .scroll-card-copy{
+    margin:-1px 0 3px;
+    padding-top:0;
   }
 }
