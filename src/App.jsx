@@ -740,6 +740,12 @@ function ScrollSpellCard({
 }) {
   return (
     <article className={`scroll-card ${saved ? 'saved' : ''}`}>
+      <div className="scroll-card-title-wrap">
+        <h3 className={spell.name.length > 17 ? 'scroll-card-title-long' : ''}>
+          {spell.name}
+        </h3>
+      </div>
+
       {onPreview ? (
         <SpellPreviewTrigger spell={spell} onPreview={onPreview} />
       ) : (
@@ -750,9 +756,6 @@ function ScrollSpellCard({
 
       <div className="scroll-card-copy">
         <p className="eyebrow">{levelLabel(spell.spellLevel)}</p>
-        <h3 className={spell.name.length > 17 ? 'scroll-card-title-long' : ''}>
-          {spell.name}
-        </h3>
         <p className="scroll-card-school">{spell.school}</p>
       </div>
 

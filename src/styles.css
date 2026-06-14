@@ -344,6 +344,67 @@ input{flex:1}
   .spell-preview-copy .spell-facts div{grid-template-columns:92px 1fr}
   .spell-preview-copy dt,.spell-preview-copy dd{font-size:.78rem}
   .spell-preview-copy .body-copy{font-size:.82rem;line-height:1.38}
-  .spell-preview-actions{position:sticky;bottom:-14px;margin:14px -14px -14px;padding:10px 14px;
-    background:color-mix(in srgb,var(--paper-page) 90%,transparent);backdrop-filter:blur(7px)}
+  .spell-preview-actions{
+    position:static;
+    margin:14px 0 0;
+    padding:0;
+    background:transparent;
+    backdrop-filter:none;
+  }
+}
+
+/* Scroll card title moved into the top rolled section */
+.scroll-card{
+  padding-top:24px;
+}
+
+.scroll-card-title-wrap{
+  position:relative;
+  z-index:4;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  margin:2px 0 6px;
+  padding:0 18px;
+  text-align:center;
+}
+
+.scroll-card-title-wrap h3{
+  margin:0;
+  color:var(--page-ink);
+  font-size:1.02rem;
+  line-height:1.05;
+}
+
+.scroll-card-image{
+  margin:2px -4px -5px;
+}
+
+.scroll-card-copy{
+  padding-top:2px;
+}
+
+@media(max-width:760px){
+  .scroll-card{
+    padding-top:22px;
+  }
+
+  .scroll-card-title-wrap{
+    min-height:42px;
+    margin:0 0 4px;
+    padding:0 12px;
+  }
+
+  .scroll-card-title-wrap h3{
+    font-size:.88rem;
+  }
+
+  .finder .scroll-card-title-long{
+    font-size:calc(.88rem - 1px);
+  }
+
+  .scroll-card-image{
+    margin:2px -2px -4px;
+  }
 }
