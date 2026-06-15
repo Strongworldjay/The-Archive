@@ -100,7 +100,7 @@ dd{margin:0;color:var(--page-ink)}
 .scroll-card p{margin-bottom:0;color:var(--page-ink-soft)}
 .scroll-card .button{align-self:center;padding:7px 12px;font-size:.82rem}
 .modal-backdrop{position:fixed;z-index:30;inset:0;display:grid;padding:20px;background:rgba(8,12,24,.7);backdrop-filter:blur(8px);place-items:center}
-.finder{width:min(1280px,100%);max-height:94vh;padding:20px;overflow:auto;color:var(--page-ink);background-color:var(--paper-page);background-image:linear-gradient(var(--paper-overlay),var(--paper-overlay)),var(--left-page-texture);background-position:center;background-size:auto,cover;border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,.42);scrollbar-width:none}
+.finder{width:min(1280px,100%);max-height:94vh;padding:20px;overflow:auto;color:var(--page-ink);background-color:var(--paper-page);background-image:var(--mobile-page-texture);background-position:center;background-size:100% 100%;background-repeat:no-repeat;border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,.42);scrollbar-width:none}
 .finder h2,.finder h3,.finder p,.finder strong,.finder span{color:var(--page-ink)}
 .finder-controls{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
 .finder-count{margin:0 0 12px;color:var(--page-ink-soft);font-size:.86rem}
@@ -305,8 +305,8 @@ input{flex:1}
 .spell-preview-modal{
   width:min(880px,100%);max-height:min(88vh,820px);padding:20px;
   overflow:auto;color:var(--page-ink);background-color:var(--paper-page);
-  background-image:linear-gradient(var(--paper-overlay),var(--paper-overlay)),var(--left-page-texture);
-  background-position:center;background-size:auto,cover;border:1px solid rgba(73,53,28,.32);
+  background-image:var(--mobile-page-texture);
+  background-position:center;background-size:100% 100%;background-repeat:no-repeat;border:1px solid rgba(73,53,28,.32);
   border-radius:18px;box-shadow:0 24px 64px rgba(0,0,0,.46);
   scrollbar-width:none
 }
