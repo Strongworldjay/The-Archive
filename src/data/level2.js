@@ -993,7 +993,7 @@ export const LEVEL2 = [
     concentration: false,
     ritual: false,
     descriptionMd:
-        "You can cast this spell only while you are transformed by Wild Shape or by a spell that changes your form (such as [spells]polymorph[/spells]). This spell ignores any restrictions that would prevent you from casting spells while transformed, as long as you are otherwise capable of using magic.\n\n" +
+        "You can cast this spell only while you are transformed by Wild Shape or by a spell that changes your form (such as polymorph). This spell ignores any restrictions that would prevent you from casting spells while transformed, as long as you are otherwise capable of using magic.\n\n" +
         "You lunge with crushing jaws, horns, or talons, battering everything in a tight arc. Each creature in the cone must make a Strength saving throw. On a failed save, a creature takes 2d8 Piercing damage, has the Prone condition, and has the Grappled condition (escape DC equals your spell save DC). On a successful save, the creature takes half as much damage and isn’t Prone or Grappled.\n\n" +
         "A creature Grappled by this spell is Grappled by you (no extra appendages appear), and the Grappled condition ends early if you are Incapacitated, if the creature is ever more than 10 feet from you, or if you end the Grapple (no action required).",
     scalingMd:
@@ -1024,7 +1024,7 @@ export const LEVEL2 = [
     concentration: false,
     ritual: false,
     descriptionMd:
-        "You can cast this spell only while you are transformed by Wild Shape or by a spell that changes your form (such as [spells]polymorph[/spells]). This spell ignores any restrictions that would prevent you from casting spells while transformed, as long as you are otherwise capable of using magic.\n\n" +
+        "You can cast this spell only while you are transformed by Wild Shape or by a spell that changes your form (such as polymorph). This spell ignores any restrictions that would prevent you from casting spells while transformed, as long as you are otherwise capable of using magic.\n\n" +
         "You unleash a brutal tearing swipe—claw, horn, talon, or fanged arc—focused into a tight cone. Each creature in the cone must make a Dexterity saving throw. On a failed save, a creature takes 3d8 Slashing damage. On a successful save, it takes half as much damage.",
     scalingMd:
         "**Using a Higher-Level Spell Slot.** When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each spell slot level above 2nd.",
@@ -2016,7 +2016,7 @@ export const LEVEL2 = [
     concentration: false,
     ritual: false,
     descriptionMd:
-        "You can cast this spell only while you are transformed by Wild Shape or by a spell that changes your form (such as [spells]polymorph[/spells]). This spell ignores any restrictions that would prevent you from casting spells while transformed, as long as you are otherwise capable of using magic.\n\n" +
+        "You can cast this spell only while you are transformed by Wild Shape or by a spell that changes your form (such as polymorph). This spell ignores any restrictions that would prevent you from casting spells while transformed, as long as you are otherwise capable of using magic.\n\n" +
         "You lash out with a filthy, fevered bite. Make a melee spell attack against one creature within your reach. On a hit, the target takes 1d12 + your spellcasting ability modifier Piercing damage and must make a Constitution saving throw.\n\n" +
         "On a failed save, the target is afflicted with a disease for 1 minute. If the disease isn’t cured before that minute ends by magic that ends a disease or by a curative potion (such as an antitoxin, at the DM’s discretion), the target’s Hit Point maximum is halved until it finishes a Long Rest.\n\n" +
         "On a successful save, the target isn’t diseased.",
@@ -2645,7 +2645,7 @@ export const LEVEL2 = [
             "One creature must succeed on a Constitution save or become Blinded or Deafened (your choice) for the duration. The target repeats the save at the end of each of its turns, ending the effect on a success.",
         scalingMd:
             "**Using a Higher-Level Spell Slot.** Target +1 creature per slot level above 2.",
-        imagePath: spellImgUrl("blindnessdeafness")
+        imagePath: spellImgUrl("blindness_deafness")
     },
     {
         slug: slugify("Blur"),
@@ -2940,7 +2940,7 @@ export const LEVEL2 = [
         descriptionMd:
             "You cause a creature or object you can see within range to grow or shrink for the duration. An unwilling creature can make a Constitution saving throw to resist. Everything the target is wearing or carrying changes size with it. Items drop or thrown return to normal size after leaving the target’s possession.\n\nEnlarge. Size increases by one category; the target has advantage on Strength checks and Strength saving throws, and its weapon/unarmed attacks deal +1d4 damage.\n\nReduce. Size decreases by one category; the target has disadvantage on Strength checks and Strength saving throws, and its weapon/unarmed attacks deal −1d4 damage (not below 1).",
         scalingMd: "",
-        imagePath: spellImgUrl("enlargereduce")
+        imagePath: spellImgUrl("enlarge_reduce")
     },
     {
         slug: slugify("Find Steed"),

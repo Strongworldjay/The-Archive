@@ -380,14 +380,14 @@ export const LEVEL6 = [
     "You imperceptibly tangle the threads of the Weave in a 20-foot-radius sphere centered on a point you can see within range. Whenever a creature attempts to cast a spell of level 1 or higher in the area, it must make an ability check using its spellcasting ability against your spell save DC. On a success, the spell is cast as normal. On a failure, the creature casts the spell as normal and also produces an additional effect. Roll 1d10 and consult the table below.\n\n" +
     "| 1d10 | Additional Effect |\n" +
     "|---|---|\n" +
-    "| 1 | The spellcaster casts [spells]erupting earth[/spells]. |\n" +
-    "| 2 | The spellcaster casts [spells]phantasmal killer[/spells]. |\n" +
-    "| 3 | The spellcaster casts [spells]confusion[/spells]. |\n" +
-    "| 4 | The spellcaster casts [spells]fireball[/spells]. |\n" +
-    "| 5 | The spellcaster casts [spells]grease[/spells]. |\n" +
-    "| 6 | The spellcaster casts [spells]web[/spells]. |\n" +
-    "| 7 | The spellcaster casts [spells]darkness[/spells]. |\n" +
-    "| 8 | The spellcaster casts [spells]silence[/spells]. |\n" +
+    "| 1 | The spellcaster casts erupting earth. |\n" +
+    "| 2 | The spellcaster casts phantasmal killer. |\n" +
+    "| 3 | The spellcaster casts confusion. |\n" +
+    "| 4 | The spellcaster casts fireball. |\n" +
+    "| 5 | The spellcaster casts grease. |\n" +
+    "| 6 | The spellcaster casts web. |\n" +
+    "| 7 | The spellcaster casts darkness. |\n" +
+    "| 8 | The spellcaster casts silence. |\n" +
     "| 9 | The spellcaster regains 2d10 Hit Points. |\n" +
     "| 10 | The spellcaster doesn’t expend a spell slot to cast its spell. |\n\n" +
     "Any additional spell cast this way targets the spellcaster or is centered on it, and the spellcaster has no control over that spell’s effects. Any saving throw DC for the additional spell equals the spellcaster’s spell save DC. If the additional spell normally requires Concentration, it doesn’t require Concentration when created by this spell.\n\n" +
@@ -545,7 +545,7 @@ export const LEVEL6 = [
   descriptionMd:
     "You cause rapid, unpredictable changes in the internal air pressure of one creature you can see within range, rupturing its breathing apparatus. The target must make a Constitution saving throw. A creature holding its breath makes this saving throw with Disadvantage. On a failed save, the target takes 7d6 Thunder damage and 7d6 Necrotic damage, and it immediately begins suffocating. On a successful save, the target takes half as much damage only.\n\n" +
     "A creature suffocating in this way repeats the saving throw at the end of each of its turns, ending the effect on itself on a success.\n\n" +
-    "A creature that doesn’t need to breathe is immune to this spell. A [spells]greater restoration[/spells], [spells]heal[/spells], or [spells]wish[/spells] spell can restore a creature’s ability to breathe and end this suffocation.",
+    "A creature that doesn’t need to breathe is immune to this spell. A greater restoration, heal, or wish spell can restore a creature’s ability to breathe and end this suffocation.",
   scalingMd:
     "**Using a Higher-Level Spell Slot.** When you cast this spell using a spell slot of 7th level or higher, the Thunder damage and the Necrotic damage each increase by 1d6 for each slot level above 6.",
   imagePath: spellImgUrl("lungburst")

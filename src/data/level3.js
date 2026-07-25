@@ -3631,7 +3631,7 @@ export const LEVEL3 = [
     concentration: false,
     ritual: false,
     descriptionMd:
-        "You can cast this spell only while you are transformed by Wild Shape or by a spell that changes your form (such as [spells]polymorph[/spells]). This spell ignores any restrictions that would prevent you from casting spells while transformed, as long as you are otherwise capable of using magic.\n\n" +
+        "You can cast this spell only while you are transformed by Wild Shape or by a spell that changes your form (such as polymorph). This spell ignores any restrictions that would prevent you from casting spells while transformed, as long as you are otherwise capable of using magic.\n\n" +
         "You unleash a feral howl that shakes bone and spirit. Choose any number of creatures you can see within the Emanation. Each chosen creature must make a Wisdom saving throw. On a failed save, the creature has the Frightened condition until the end of your next turn. On a successful save, it isn’t Frightened.\n\n" +
         "Your body answers the call as well—you regain 2d12 Hit Points.",
     scalingMd:
@@ -3661,7 +3661,7 @@ export const LEVEL3 = [
     concentration: false,
     ritual: false,
     descriptionMd:
-        "You can cast this spell only while you are transformed by Wild Shape or by a spell that changes your form (such as [spells]polymorph[/spells]). This spell ignores any restrictions that would prevent you from casting spells while transformed, as long as you are otherwise capable of using magic.\n\n" +
+        "You can cast this spell only while you are transformed by Wild Shape or by a spell that changes your form (such as polymorph). This spell ignores any restrictions that would prevent you from casting spells while transformed, as long as you are otherwise capable of using magic.\n\n" +
         "You explode into a flurry of tearing strikes. Make three melee spell attacks against one creature within your reach. On a hit, the target takes 2d8 + your spellcasting ability modifier Slashing damage.",
     scalingMd:
         "**Using a Higher-Level Spell Slot.** When you cast this spell using a spell slot of 4th level or higher, you make one additional attack for each spell slot level above 3rd.",
